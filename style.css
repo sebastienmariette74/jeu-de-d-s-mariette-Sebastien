@@ -1,0 +1,95 @@
+/* reset css */
+html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select{margin:0}html{box-sizing:border-box}*,*::before,*::after{box-sizing:inherit}img,video{height:auto;max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0}
+
+* {
+  border: 1px solid;
+}
+
+body {
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200;
+}
+
+body .display {
+  margin: 0 auto;
+  margin-top: 100px;
+  width: 70%;
+  border-style: solid;
+  border-width: 8px 18px 13px 13px;
+  border-color: rgba(165, 42, 42, .7);  
+}
+
+.display, .players, .global_score, .round_score {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.display {
+  flex-direction: column;
+  align-content: space-around;
+}
+
+.new_game {
+  text-align: center;
+  height: 10vh;
+  line-height: 10vh;
+}
+
+.players {
+  height: 30vh; 
+}
+
+.round_score {
+  height: 20vh; 
+}
+
+.players>div:nth-child(odd), .round_score>div:nth-child(odd) {
+  width: 40%;
+  text-align: center;
+}
+
+.players>div:nth-child(2), .round_score>div:nth-child(2) {
+  width: 20%;
+  text-align: center;
+}
+
+.new_game::before {
+  content: url(/images/icone_add.svg);
+}
+
+.title_player {
+  /* font-size: 1.2em; */
+  font-size: 2rem;
+}
+
+.global_score {
+  color: red;
+  font-size: 4rem;
+}
+
+.current_score>div {
+  width: 20%;
+  min-width: 70px;
+  margin: 0 auto;
+  background-color: rgba(255, 0, 0, .6);
+}
+
+.title_current_score {
+  font-size: 0.8rem;
+  line-height: 40px;
+}
+
+.current_score_player {
+  color: white;
+  font-size: 1.5rem;
+  line-height: 40px;
+}
+
+.roll_dice, .hold {
+  line-height: 30px;
+}
+
+.roll_dice {
+  margin-bottom: 20px;
+}
