@@ -37,7 +37,15 @@ body .display {
 }
 
 .players {
-  height: 30vh; 
+  height: 20vh; 
+}
+
+#winner {
+  height: 10vh;
+  text-align: center;
+  line-height: 10vh;
+  font-size: 1.5em;
+  /* align-self: center; */
 }
 
 .round_score {
@@ -53,20 +61,32 @@ body .display {
   width: 20%;
   text-align: center;
 }
-
+/* 
 .new_game::before {
   content: url(/images/icone_add.svg);
-}
+} */
 
 .title_player {
   /* font-size: 1.2em; */
   font-size: 2rem;
 }
 
+.hand {
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+
 .global_score {
   color: red;
   font-size: 4rem;
 }
+
+#dice {
+  width: 55px;
+  margin-top: 55px ;
+}
+
 
 .current_score>div {
   width: 20%;
@@ -92,4 +112,9 @@ body .display {
 
 .roll_dice {
   margin-bottom: 20px;
+}
+
+#btn_new_game {
+  margin-bottom: 4px;
+  vertical-align: middle;
 }
