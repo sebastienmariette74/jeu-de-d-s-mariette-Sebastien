@@ -5,7 +5,7 @@ roundPlayer2.innerHTML = 0;
 
 let player1 = document.getElementById('player1');
 let player2 = document.getElementById('player2');
-player2.style.opacity = '0.5';
+player2.style.opacity = '0.3';
 
 let newGame = document.getElementById('new_game');
 
@@ -34,7 +34,7 @@ let beginRoleDiceP2 = 0;
 // let test = document.getElementById('test');
 // test.innerHTML = "";
 
-handPlayer1.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">';
+handPlayer1.innerHTML = '<img class="hand" src="images/hand.svg" alt="">';
 
 let partiesGagnéesP1 = 0;
 let partiesGagnéesP2 = 0;
@@ -112,7 +112,7 @@ let rollDice = () => {
       let count = nb();
       if (player1Turn){
       console.log(win.innerHTML);
-      handPlayer1.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">';
+      handPlayer1.innerHTML = '<img class="hand" src="images/hand.svg" alt="">';
       beginRoleDiceP1 = count;
         if (count !=1){
           roundPlayer1.innerHTML = parseInt(roundPlayer1.innerHTML) + count;
@@ -124,7 +124,7 @@ let rollDice = () => {
         };
       }else {
         win.innerHTML = "";
-        handPlayer2.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">';      
+        handPlayer2.innerHTML = '<img class="hand" src="images/hand.svg" alt="">';      
         if (count !=1){
           roundPlayer2.innerHTML = parseInt(roundPlayer2.innerHTML) + count;        
         } else {
@@ -149,7 +149,7 @@ let beginner = () => {
     console.log(globalPlayer1.innerHTML);
     console.log(lancer1);
     handPlayer1.innerHTML = '';
-    handPlayer2.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">';
+    handPlayer2.innerHTML = '<img class="hand" src="images/hand.svg" alt="">';
     begin.innerHTML = "Pour savoir qui commence <br> Player 2, lancez le dé !!! " ;
     
   } else {
@@ -160,7 +160,7 @@ let beginner = () => {
     handPlayer1.innerHTML = '';
     handPlayer2.innerHTML = '';
     if (globalPlayer1.innerHTML > globalPlayer2.innerHTML){
-      handPlayer1.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">';
+      handPlayer1.innerHTML = '<img class="hand" src="images/hand.svg" alt="">';
       player1Turn = true; 
       begin.innerHTML = "Player 1 commence !" ;
       tirage.innerHTML =""
@@ -168,7 +168,7 @@ let beginner = () => {
       partie2 = true;
       winnerBegin = true;
     } else if (globalPlayer1.innerHTML < globalPlayer2.innerHTML){
-      handPlayer2.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">';
+      handPlayer2.innerHTML = '<img class="hand" src="images/hand.svg" alt="">';
       player1Turn = false; 
       begin.innerHTML = "Player 2 commence !" ;
       tirage.innerHTML ="";
@@ -176,7 +176,7 @@ let beginner = () => {
       partie2 = true;
       winnerBegin = true;
     } else {
-      handPlayer1.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">';
+      handPlayer1.innerHTML = '<img class="hand" src="images/hand.svg" alt="">';
       handPlayer2.innerHTML = "";
       // partie1 = false;  
       // roundPlayer1.innerHTML = globalPlayer1.innerhtml;
@@ -223,17 +223,17 @@ let addPoints = () => {
       if (partiesGagnéesP1 > partiesGagnéesP2) {
         win.innerHTML = "Player 1 a gagné cette partie !!! <br> Player 1 mène " + partiesGagnéesP1 + " partie(s) à " + partiesGagnéesP2 + "<br> Honneur au perdant !!! ";
         handPlayer1.innerHTML = ''; 
-        handPlayer2.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">'; 
+        handPlayer2.innerHTML = '<img class="hand" src="images/hand.svg" alt="">'; 
         player1Turn = false; 
       } else if (partiesGagnéesP1 < partiesGagnéesP2) {
         win.innerHTML = "Player 1 a gagné cette partie !!! <br> Player 2 mène " + partiesGagnéesP2 + " partie(s) à " + partiesGagnéesP1 + "<br> Honneur au perdant !!! ";
         handPlayer1.innerHTML = ''; 
-        handPlayer2.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">'; 
+        handPlayer2.innerHTML = '<img class="hand" src="images/hand.svg" alt="">'; 
         player1Turn = false;
       } else {
         win.innerHTML = "Player 1 a gagné cette partie !!! <br> Vous êtes à " + partiesGagnéesP1 + " partout " + "<br> Honneur au perdant !!! ";
         handPlayer1.innerHTML = ''; 
-        handPlayer2.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">'; 
+        handPlayer2.innerHTML = '<img class="hand" src="images/hand.svg" alt="">'; 
         player1Turn = false;
       };
     } else if (parseInt(globalPlayer2.innerHTML) >= 10){  
@@ -242,17 +242,17 @@ let addPoints = () => {
       if (partiesGagnéesP1 > partiesGagnéesP2) {
         win.innerHTML = "Player 2 a gagné cette partie !!! <br> Player 1 mène " + partiesGagnéesP1 + " partie(s) à " + partiesGagnéesP2 + "<br> Honneur au perdant !!! ";
         handPlayer2.innerHTML = ''; 
-        handPlayer1.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">'; 
+        handPlayer1.innerHTML = '<img class="hand" src="images/hand.svg" alt="">'; 
         player1Turn = true; 
       } else if (partiesGagnéesP1 < partiesGagnéesP2) {
         win.innerHTML = "Player 2 a gagné cette partie !!! <br> Player 2 mène " + partiesGagnéesP2 + " partie(s) à " + partiesGagnéesP1 + "<br> Honneur au perdant !!! ";
         handPlayer2.innerHTML = ''; 
-        handPlayer1.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">'; 
+        handPlayer1.innerHTML = '<img class="hand" src="images/hand.svg" alt="">'; 
         player1Turn = true;  
       } else {
         win.innerHTML = "Player 2 a gagné cette partie !!! <br> Vous êtes à " + partiesGagnéesP2 + " partout " + "<br> Honneur au perdant !!! ";
         handPlayer2.innerHTML = ''; 
-        handPlayer1.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">'; 
+        handPlayer1.innerHTML = '<img class="hand" src="images/hand.svg" alt="">'; 
         player1Turn = true; 
       };
 
