@@ -10,7 +10,9 @@ player2.style.opacity = '0.3';
 let newGame = document.getElementById('new_game');
 newGame.style.opacity = '0.3';
 
-let tirage = document.getElementById('dice');
+let tirage = document.getElementById('dice'), 
+fadeInInterval,
+fadeOutInterval;
 
 let globalPlayer1 = document.getElementById('global_score_player1');
 globalPlayer1.innerHTML = 0;
@@ -28,6 +30,7 @@ let handPlayer2 = document.getElementById('hand_player2');
 
 let roll_dice = document.getElementById('btn_roll_dice');
 let hold = document.getElementById('hold');
+hold.style.opacity = '0.3';
 
 let beginRoleDiceP1 = 0;
 let beginRoleDiceP2 = 0;
@@ -48,9 +51,85 @@ let winnerBegin = false;
 
 let player1Turn = true;
 
-// let suite = false;
-
 let premierCoup = 0;
+    
+let fadeOut = () => {
+    
+// clearInterval(fadeInInterval);
+clearInterval(fadeOutInterval);
+
+tirage.fadeOut = function(timing) {
+var newValue = 1;
+tirage.style.opacity = 1;
+
+fadeOutInterval = setInterval(function(){ 
+
+if (newValue > 0) {
+  newValue -= 0.01;
+} else if (newValue < 0) {
+  tirage.style.opacity = 0;
+  clearInterval(fadeOutInterval);
+};
+
+tirage.style.opacity = newValue;
+
+}, timing);
+
+}
+
+tirage.fadeOut(4);
+console.log(tirage.style.opacity);
+};
+
+
+// var opacity = 1;
+// var intervalID = 0;
+// // window.onload = fadeout;
+// // let newGame = document.getElementById("new_game");
+// console.log(newGame.style.opacity);
+
+
+// function fadeout(){
+//   setInterval(hide, 100);
+// };
+
+// function hide(){
+//   // let tirage = document.getElementById("dice");
+//   // newGame.style.opacity = '1';
+//   // opacity = opacity - 0.1;
+//   // if (opacity > 0){  
+//   //   tirage.style.opacity = opacity;
+//   // } else if (opacity === 0){
+//   //   setInterval(intervalID); 
+//   // };
+
+//   if(opacity > 0){
+//     opacity = opacity - 0.1;
+//     tirage.style.opacity = opacity;
+//   } else if (opacity < 0){
+//     tirage.style.opacity = 0;
+//     clearInterval(intervalID); 
+//   };
+//   console.log(tirage.style.opacity);
+
+// }; 
+
+// console.log(newGame.style.opacity);
+// fadeout();
+
+// function fadeOutEffect() {
+//   let newGameDisplay = document.getElementById("new_game");
+//   let fadeEffect = setInterval(function () {
+//       if (!newGameDisplay.style.opacity) {
+//         newGameDisplay.style.opacity = 1;
+//       }
+//       if (newGameDisplay.style.opacity > 0) {
+//         newGameDisplay.style.opacity -= 0.1;
+//       } else {
+//           clearInterval(fadeEffect);
+//       }
+//   }, 200);
+// };
 
 if (partiesGagnéesP1 === partiesGagnéesP2){
   begin.innerHTML = "Pour savoir qui commence <br> Player 1, lancez le dé !!! " 
@@ -93,11 +172,12 @@ let rollDice = () => {
     beginner();    
 
     if (win.innerHTML != "" || partie1 || partie2) {
-      // suite = true;
       if (partie2){partie2=false};
       if (partie1 === partie2){partie3 = true;};            
       event.preventDefault();
     } else if (partie3 ){
+      tirage.style.opacity = '1';
+      opacity = 1;
       if (premierCoup === 0){
         globalPlayer1.innerHTML = 0;
         globalPlayer2.innerHTML = 0;
@@ -106,19 +186,28 @@ let rollDice = () => {
       begin.innerHTML = "";
       let count = nb();
       if (player1Turn){
+      // tirage.style.opacity = '1';
       player1.style.opacity = '1';
       player2.style.opacity = '0.3';
       handPlayer1.innerHTML = '<img class="hand" src="images/hand.svg" alt="">';
       beginRoleDiceP1 = count;
         if (count !=1){
+
           roundPlayer1.innerHTML = parseInt(roundPlayer1.innerHTML) + count;
         } else {
+          opacity = 1;
+          player1.style.opacity = '0.3';
+          player2.style.opacity = '1';
           player1Turn = false;
           roundPlayer1.innerHTML = 0;
           handPlayer2.innerHTML = '<img class="hand" src="images/hand.svg" alt="">';
           handPlayer1.innerHTML = '';
+          fadeOut();
+          // fadeOutEffect();
+          // dice.style.opacity = '1';
         };
       }else {
+        // tirage.style.opacity = '1';
         player1.style.opacity = '0.3';
         player2.style.opacity = '1';
         win.innerHTML = "";
@@ -126,16 +215,23 @@ let rollDice = () => {
         if (count !=1){
           roundPlayer2.innerHTML = parseInt(roundPlayer2.innerHTML) + count;        
         } else {
+          opacity = 1;
+          player1.style.opacity = '1';
+          player2.style.opacity = '0.3';
           player1Turn = true;
           roundPlayer2.innerHTML = 0;
           handPlayer1.innerHTML = '<img class="hand" src="images/hand.svg" alt="">';
           handPlayer2.innerHTML = '';
+          fadeOut();
+          // fadeOutEffect();
+          // tirage.style.opacity ='1';
+          // controle.log(tirage.style.opacity);
         };
       };     
     };
   });
 };
-
+dice.style.opacity = '1';
 // Chaque joueur lance le dé. Celui qui a le score le plus grand commence
 let beginner = () => {
   if (winnerBegin){    
@@ -148,7 +244,7 @@ let beginner = () => {
     handPlayer1.innerHTML = '';
     handPlayer2.innerHTML = '<img class="hand" src="images/hand.svg" alt="">';
     begin.innerHTML = "Player 2, lancez le dé !!! " ;
-    
+    hold.style.opacity = '0.3';
   } else {
     let lancer2 = nb();    
     globalPlayer2.innerHTML = lancer2;
@@ -164,6 +260,7 @@ let beginner = () => {
       partie1 = false;
       partie2 = true;
       winnerBegin = true;
+      hold.style.opacity = '1';
     } else if (globalPlayer1.innerHTML < globalPlayer2.innerHTML){
       player1.style.opacity = '0.3';
       player2.style.opacity = '1';
@@ -174,6 +271,7 @@ let beginner = () => {
       partie1 = false;
       partie2 = true;
       winnerBegin = true;
+      hold.style.opacity = '1';
     } else {
       player1.style.opacity = '1';
       player2.style.opacity = '0.3';
@@ -314,8 +412,16 @@ let playAgain = () => {
     newGame.style.opacity = '0.3';
     handPlayer1.style.display = 'block';
     handPlayer2.style.display = 'block';
+    if (player1Turn){
+      player1.style.opacity = '1';
+    } else {
+      player2.style.opacity = '1';
+    };
+
   });
 };
+
+
 
 rollDice();
 addPoints();
