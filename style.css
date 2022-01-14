@@ -40,11 +40,11 @@ body .display {
   height: 20vh; 
 }
 
-#winner {
+#winner, #begin {
   height: 10vh;
   text-align: center;
-  line-height: 10vh;
   font-size: 1.5em;
+  color: red;
   /* align-self: center; */
 }
 
