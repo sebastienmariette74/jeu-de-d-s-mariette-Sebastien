@@ -3,6 +3,10 @@ roundPlayer1.innerHTML = 0;
 let roundPlayer2 = document.getElementById('current_score_player2')
 roundPlayer2.innerHTML = 0;
 
+let player1 = document.getElementById('player1');
+let player2 = document.getElementById('player2');
+player2.style.opacity = '0.5';
+
 let newGame = document.getElementById('new_game');
 
 let tirage = document.getElementById('dice');
@@ -36,17 +40,14 @@ let partiesGagnéesP1 = 0;
 let partiesGagnéesP2 = 0;
 
 let partie1 = true;
+let partie2 = false;
+let partie3 = false;
 
 let winnerBegin = false;
 
 let player1Turn = true;
-// let player2Turn = false;
 
-let suite = false;
-console.log(suite + 'premier suite');
-
-let partie2 = false;
-let partie3 = false;
+// let suite = false;
 
 let premierCoup = 0;
 
@@ -58,7 +59,6 @@ if (partiesGagnéesP1 === partiesGagnéesP2){
 let getRandom = function() {
   return Math.floor(Math.random() * 6) + 1 ;
 };
-
 
 // trouve un nombre aléatoire et intègre l'image de la face du dé correspondant au nombre trouvé dans le HTML
 function nb (){
@@ -89,64 +89,15 @@ function nb (){
 // en cliquant sur ROLL DICE on ajoute le résultat du lancer au score courant du joueur concerné
 let rollDice = () => {
   roll_dice.addEventListener('click', function(event){
-    console.log(partie1);
-    // console.log(globalPlayer1.innerHTML);
 
-    beginner();
-
-    // if ( partie1 && roundPlayer1.innerHTML == 0){
-    //   let lancer1 = nb();
-    //   console.log(lancer1)
-    //   roundPlayer1.innerHTML = lancer1;
-    //   console.log(roundPlayer1.innerHTML);
-    //   console.log(lancer1);
-    //   handPlayer1.innerHTML = '';
-    //   handPlayer2.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">';
-    //   begin.innerHTML = "Pour savoir qui commence <br> Player 2, lancez le dé !!! " ;
-    // } else {
-    //   let lancer2 = nb();
-    //   console.log(lancer2);      
-    //   roundPlayer2.innerHTML = lancer2;
-    //   handPlayer1.innerHTML = '';
-    //   handPlayer2.innerHTML = '';
-    //   console.log(roundPlayer1.innerHTML + ' ' + roundPlayer2.innerHTML);
-    //   // partie1 = false;
-    //   if (roundPlayer1.innerHTML > roundPlayer2.innerHTML){
-    //     handPlayer1.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">';
-    //     player1Turn = true;   
-    //     // partie1 = false;
-    //     begin.innerHTML = "Player 1 commence !" ;
-    //   } else {
-    //     handPlayer2.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">';
-    //     player1Turn = false; 
-    //     // partie1 = false;  
-    //     begin.innerHTML = "Player 2 commence !" ;
-    //   };
-    // };
-
-    // let suite = true;
-    // || suite === false )
-
-    // console.log(suite + ' suite 2');
-    // console.log(partie1 + ' partie1 avant roll dice');
-    // console.log(partie2 + ' partie2 avant roll dice');
-    // console.log(partie3 + ' partie3 avant roll dice');
+    beginner();    
 
     if (win.innerHTML != "" || partie1 || partie2) {
-      // partie1;
       suite = true;
       if (partie2){partie2=false};
       if (partie1 === partie2){partie3 = true;
       };      
-      // console.log('------------------');
-      // console.log(partie1 + ' partie1 après roll dice');
-      // console.log(partie2 + ' partie2 après roll dice');
-      // console.log(partie3 + ' partie3 après roll dice');
-      // console.log(suite + ' suite 3');
-      console.log("if 2");
-      // console.log(partie1);
       event.preventDefault();
-      // (partie1 === false && (globalPlayer1 === 0 || globalPlayer2 === 0))
     } else if (partie3 ){
       console.log(premierCoup + ' avant');
       if (premierCoup === 0){
@@ -159,12 +110,8 @@ let rollDice = () => {
       console.log("win.innerHTML");
       console.log("if 3");
       let count = nb();
-      // test.innerHTML = count;
       if (player1Turn){
-        // globalPlayer1.innerHTML = 0;
-        // globalPlayer2.innerHTML = 0;
       console.log(win.innerHTML);
-      // begin.innerHTML = "";
       handPlayer1.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">';
       beginRoleDiceP1 = count;
         if (count !=1){
@@ -174,12 +121,8 @@ let rollDice = () => {
           roundPlayer1.innerHTML = 0;
           handPlayer2.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">';
           handPlayer1.innerHTML = '';
-          // event.stopPropagation();
         };
       }else {
-        // globalPlayer1.innerHTML = 0;
-        // globalPlayer2.innerHTML = 0;
-        console.log(win.innerHTML);
         win.innerHTML = "";
         handPlayer2.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">';      
         if (count !=1){
@@ -189,7 +132,6 @@ let rollDice = () => {
           roundPlayer2.innerHTML = 0;
           handPlayer1.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">';
           handPlayer2.innerHTML = '';
-          // event.stopPropagation();
         };
       };     
     };
@@ -199,14 +141,11 @@ let rollDice = () => {
 // Chaque joueur lance le dé. Celui qui a le score le plus grand commence
 let beginner = () => {
   if (winnerBegin){    
-    console.log(winnerBegin + "winnerbegin");
     event.preventDefault();
   } else if ( partie1 && globalPlayer1.innerHTML == 0){
     console.log(winnerBegin + "winnerbegin2");
     let lancer1 = nb();
-    // console.log(lancer1)
     globalPlayer1.innerHTML = lancer1;
-    // globalPlayer2.innerHTML = 0;
     console.log(globalPlayer1.innerHTML);
     console.log(lancer1);
     handPlayer1.innerHTML = '';
@@ -214,12 +153,12 @@ let beginner = () => {
     begin.innerHTML = "Pour savoir qui commence <br> Player 2, lancez le dé !!! " ;
     
   } else {
-    let lancer2 = nb();
-    // console.log(lancer2);      
+    player1.style.opacity = '0.5';
+    player2.style.opacity = '1';
+    let lancer2 = nb();    
     globalPlayer2.innerHTML = lancer2;
     handPlayer1.innerHTML = '';
     handPlayer2.innerHTML = '';
-    console.log(globalPlayer1.innerHTML + ' ' + globalPlayer2.innerHTML);
     if (globalPlayer1.innerHTML > globalPlayer2.innerHTML){
       handPlayer1.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">';
       player1Turn = true; 
@@ -253,40 +192,6 @@ let beginner = () => {
   console.log(partie1 + ' partie1');
   console.log(winnerBegin + ' winnerbegin');
 };
-
-// let rollDice = () => {
-//   roll_dice.addEventListener('click', function(event){
-//     console.log(win.innerHTML);
-//     let count = nb();
-//     if (player1Turn){
-//       handPlayer1.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">';
-//       if (count !=1){
-//         roundPlayer1.innerHTML = parseInt(roundPlayer1.innerHTML) + count;
-//       } else {
-//         player1Turn = false;
-//         roundPlayer1.innerHTML = 0;
-//         handPlayer2.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">';
-//         handPlayer1.innerHTML = '';
-//         event.stopPropagation();
-//       };
-//     } else {
-//       handPlayer2.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">';      
-//       if (count !=1){
-//         roundPlayer2.innerHTML = parseInt(roundPlayer2.innerHTML) + count;        
-//       } else {
-//         player1Turn = true;
-//         roundPlayer2.innerHTML = 0;
-//         handPlayer1.innerHTML = '<img class="hand" src="/images/hand.svg" alt="">';
-//         handPlayer2.innerHTML = '';
-//         event.stopPropagation();
-//       };
-//     };     
-//     });
-//     console.log(win.innerHTML);
-//   };
-
-
-console.log('test');
 
 // en cliquant sur HOLD on ajoute les points au score global du joueur concerné
 let addPoints = () => {
