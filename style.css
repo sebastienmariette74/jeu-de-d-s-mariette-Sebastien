@@ -57,6 +57,10 @@ body .display {
   margin-right: 5%;
 }
 
+#player2 {
+  margin-left: 5%;
+}
+
 .point {
   font-size: 100px;
   color: red;
@@ -69,6 +73,7 @@ body .display {
 
 #winner, #begin {
   height: 10vh;
+  line-height: 1.6em;
   text-align: center;
   /* font-size: 1.5em; */
   color: red;

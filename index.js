@@ -8,6 +8,7 @@ let player2 = document.getElementById('player2');
 player2.style.opacity = '0.3';
 
 let newGame = document.getElementById('new_game');
+newGame.style.opacity = '0.3';
 
 let tirage = document.getElementById('dice');
 
@@ -85,33 +86,28 @@ function nb (){
   return number;
 };
 
-
-// en cliquant sur ROLL DICE on ajoute le résultat du lancer au score courant du joueur concerné
+// en cliquant sur ROLL DICE on ajoute le résultat du lancer au score courant du joueur concerné sauf s'il tire le dé 1.
 let rollDice = () => {
   roll_dice.addEventListener('click', function(event){
 
     beginner();    
 
     if (win.innerHTML != "" || partie1 || partie2) {
-      suite = true;
+      // suite = true;
       if (partie2){partie2=false};
-      if (partie1 === partie2){partie3 = true;
-      };      
+      if (partie1 === partie2){partie3 = true;};            
       event.preventDefault();
     } else if (partie3 ){
-      console.log(premierCoup + ' avant');
       if (premierCoup === 0){
         globalPlayer1.innerHTML = 0;
         globalPlayer2.innerHTML = 0;
       };
       premierCoup ++; 
-      console.log(premierCoup + ' après');
       begin.innerHTML = "";
-      console.log("win.innerHTML");
-      console.log("if 3");
       let count = nb();
       if (player1Turn){
-      console.log(win.innerHTML);
+      player1.style.opacity = '1';
+      player2.style.opacity = '0.3';
       handPlayer1.innerHTML = '<img class="hand" src="images/hand.svg" alt="">';
       beginRoleDiceP1 = count;
         if (count !=1){
@@ -123,6 +119,8 @@ let rollDice = () => {
           handPlayer1.innerHTML = '';
         };
       }else {
+        player1.style.opacity = '0.3';
+        player2.style.opacity = '1';
         win.innerHTML = "";
         handPlayer2.innerHTML = '<img class="hand" src="images/hand.svg" alt="">';      
         if (count !=1){
@@ -143,23 +141,22 @@ let beginner = () => {
   if (winnerBegin){    
     event.preventDefault();
   } else if ( partie1 && globalPlayer1.innerHTML == 0){
-    console.log(winnerBegin + "winnerbegin2");
     let lancer1 = nb();
+    player1.style.opacity = '0.3';
+    player2.style.opacity = '1';
     globalPlayer1.innerHTML = lancer1;
-    console.log(globalPlayer1.innerHTML);
-    console.log(lancer1);
     handPlayer1.innerHTML = '';
     handPlayer2.innerHTML = '<img class="hand" src="images/hand.svg" alt="">';
-    begin.innerHTML = "Pour savoir qui commence <br> Player 2, lancez le dé !!! " ;
+    begin.innerHTML = "Player 2, lancez le dé !!! " ;
     
   } else {
-    player1.style.opacity = '0.5';
-    player2.style.opacity = '1';
     let lancer2 = nb();    
     globalPlayer2.innerHTML = lancer2;
     handPlayer1.innerHTML = '';
     handPlayer2.innerHTML = '';
     if (globalPlayer1.innerHTML > globalPlayer2.innerHTML){
+      player1.style.opacity = '1';
+      player2.style.opacity = '0.3';
       handPlayer1.innerHTML = '<img class="hand" src="images/hand.svg" alt="">';
       player1Turn = true; 
       begin.innerHTML = "Player 1 commence !" ;
@@ -168,6 +165,8 @@ let beginner = () => {
       partie2 = true;
       winnerBegin = true;
     } else if (globalPlayer1.innerHTML < globalPlayer2.innerHTML){
+      player1.style.opacity = '0.3';
+      player2.style.opacity = '1';
       handPlayer2.innerHTML = '<img class="hand" src="images/hand.svg" alt="">';
       player1Turn = false; 
       begin.innerHTML = "Player 2 commence !" ;
@@ -176,28 +175,23 @@ let beginner = () => {
       partie2 = true;
       winnerBegin = true;
     } else {
+      player1.style.opacity = '1';
+      player2.style.opacity = '0.3';
       handPlayer1.innerHTML = '<img class="hand" src="images/hand.svg" alt="">';
       handPlayer2.innerHTML = "";
-      // partie1 = false;  
-      // roundPlayer1.innerHTML = globalPlayer1.innerhtml;
       globalPlayer1.innerHTML = 0;
-      // roundPlayer2.innerHTML = globalPlayer2.innerhtml;
       globalPlayer2.innerHTML = 0;
       tirage.innerHTML ="";
       begin.innerHTML = "égalité <br>Pour savoir qui commence <br>Player 1, lancez le dé !!! ";
       partie1;
     };
   };
-  // partie1 = false;
-  console.log(partie1 + ' partie1');
-  console.log(winnerBegin + ' winnerbegin');
 };
 
 // en cliquant sur HOLD on ajoute les points au score global du joueur concerné
 let addPoints = () => {
   hold.addEventListener('click', (event) => {   
-    if (partie1 || partie2 || win.innerHTML != ""){
-      console.log(partie1 + ' partie 1' + partie2 + ' partie 2');
+    if (partie1 || partie2 || win.innerHTML != "" || begin.innerHTML != ""){
       event.preventDefault();
     } else if (player1Turn) {
       globalPlayer1.innerHTML = parseInt(globalPlayer1.innerHTML) + parseInt(roundPlayer1.innerHTML);
@@ -221,41 +215,88 @@ let addPoints = () => {
       event.preventDefault();   
       partiesGagnéesP1 ++;
       if (partiesGagnéesP1 > partiesGagnéesP2) {
-        win.innerHTML = "Player 1 a gagné cette partie !!! <br> Player 1 mène " + partiesGagnéesP1 + " partie(s) à " + partiesGagnéesP2 + "<br> Honneur au perdant !!! ";
-        handPlayer1.innerHTML = ''; 
-        handPlayer2.innerHTML = '<img class="hand" src="images/hand.svg" alt="">'; 
-        player1Turn = false; 
+        win.innerHTML = "Player 1 a gagné !!! <br> Player 1 mène " + partiesGagnéesP1 + " partie(s) à " + partiesGagnéesP2 + "<br> Honneur au perdant !!! ";
+        // handPlayer1.innerHTML = ''; 
+        // handPlayer2.innerHTML = ''; 
+        handPlayer1.style.display = 'none';
+        handPlayer2.style.display = 'none';
+        // handPlayer2.innerHTML = '<img class="hand" src="images/hand.svg" alt="">'; 
+        player1Turn = false;
+        roll_dice.style.opacity = '0.3';
+        hold.style.opacity = '0.3';
+        newGame.style.opacity = '1';    
+        player1.style.opacity = '0.3';    
+        player2.style.opacity = '0.3';    
       } else if (partiesGagnéesP1 < partiesGagnéesP2) {
-        win.innerHTML = "Player 1 a gagné cette partie !!! <br> Player 2 mène " + partiesGagnéesP2 + " partie(s) à " + partiesGagnéesP1 + "<br> Honneur au perdant !!! ";
-        handPlayer1.innerHTML = ''; 
-        handPlayer2.innerHTML = '<img class="hand" src="images/hand.svg" alt="">'; 
+        win.innerHTML = "Player 1 a gagné !!! <br> Player 2 mène " + partiesGagnéesP2 + " partie(s) à " + partiesGagnéesP1 + "<br> Honneur au perdant !!! ";
+        // handPlayer1.innerHTML = ''; 
+        // handPlayer2.innerHTML = ''; 
+        handPlayer1.style.display = 'none';
+        handPlayer2.style.display = 'none';
+        // handPlayer2.innerHTML = '<img class="hand" src="images/hand.svg" alt="">'; 
         player1Turn = false;
+        roll_dice.style.opacity = '0.3';
+        hold.style.opacity = '0.3';
+        newGame.style.opacity = '1';
+        player1.style.opacity = '0.3';    
+        player2.style.opacity = '0.3';
       } else {
-        win.innerHTML = "Player 1 a gagné cette partie !!! <br> Vous êtes à " + partiesGagnéesP1 + " partout " + "<br> Honneur au perdant !!! ";
-        handPlayer1.innerHTML = ''; 
-        handPlayer2.innerHTML = '<img class="hand" src="images/hand.svg" alt="">'; 
+        win.innerHTML = "Player 1 a gagné !!! <br> Vous êtes à " + partiesGagnéesP1 + " partout " + "<br> Honneur au perdant !!! ";
+        // handPlayer1.innerHTML = ''; 
+        // handPlayer2.innerHTML = ''; 
+        handPlayer1.style.display = 'none';
+        handPlayer2.style.display = 'none';
+        // handPlayer2.innerHTML = '<img class="hand" src="images/hand.svg" alt="">'; 
         player1Turn = false;
+        roll_dice.style.opacity = '0.3';
+        hold.style.opacity = '0.3';
+        newGame.style.opacity = '1';
+        player1.style.opacity = '0.3';    
+        player2.style.opacity = '0.3';
       };
     } else if (parseInt(globalPlayer2.innerHTML) >= 10){  
       event.preventDefault();       
       partiesGagnéesP2 ++;
       if (partiesGagnéesP1 > partiesGagnéesP2) {
-        win.innerHTML = "Player 2 a gagné cette partie !!! <br> Player 1 mène " + partiesGagnéesP1 + " partie(s) à " + partiesGagnéesP2 + "<br> Honneur au perdant !!! ";
-        handPlayer2.innerHTML = ''; 
-        handPlayer1.innerHTML = '<img class="hand" src="images/hand.svg" alt="">'; 
+        win.innerHTML = "Player 2 a gagné !!! <br> Player 1 mène " + partiesGagnéesP1 + " partie(s) à " + partiesGagnéesP2 + "<br> Honneur au perdant !!! ";
+        // handPlayer1.innerHTML = ''; 
+        // handPlayer2.innerHTML = ''; 
+        handPlayer1.style.display = 'none';
+        handPlayer2.style.display = 'none';
+        // handPlayer2.innerHTML = '<img class="hand" src="images/hand.svg" alt="">'; 
         player1Turn = true; 
+        roll_dice.style.opacity = '0.3';
+        hold.style.opacity = '0.3';
+        newGame.style.opacity = '1';
+        player1.style.opacity = '0.3';    
+        player2.style.opacity = '0.3';
       } else if (partiesGagnéesP1 < partiesGagnéesP2) {
-        win.innerHTML = "Player 2 a gagné cette partie !!! <br> Player 2 mène " + partiesGagnéesP2 + " partie(s) à " + partiesGagnéesP1 + "<br> Honneur au perdant !!! ";
-        handPlayer2.innerHTML = ''; 
-        handPlayer1.innerHTML = '<img class="hand" src="images/hand.svg" alt="">'; 
+        win.innerHTML = "Player 2 a gagné !!! <br> Player 2 mène " + partiesGagnéesP2 + " partie(s) à " + partiesGagnéesP1 + "<br> Honneur au perdant !!! ";
+        // handPlayer1.innerHTML = ''; 
+        // handPlayer2.innerHTML = ''; 
+        handPlayer1.style.display = 'none';
+        handPlayer2.style.display = 'none';
+        // handPlayer2.innerHTML = '<img class="hand" src="images/hand.svg" alt="">'; 
         player1Turn = true;  
+        roll_dice.style.opacity = '0.3';
+        hold.style.opacity = '0.3';
+        newGame.style.opacity = '1';
+        player1.style.opacity = '0.3';    
+        player2.style.opacity = '0.3';
       } else {
-        win.innerHTML = "Player 2 a gagné cette partie !!! <br> Vous êtes à " + partiesGagnéesP2 + " partout " + "<br> Honneur au perdant !!! ";
-        handPlayer2.innerHTML = ''; 
-        handPlayer1.innerHTML = '<img class="hand" src="images/hand.svg" alt="">'; 
+        win.innerHTML = "Player 2 a gagné !!! <br> Vous êtes à " + partiesGagnéesP2 + " partout " + "<br> Honneur au perdant !!! ";
+        // handPlayer1.innerHTML = ''; 
+        // handPlayer2.innerHTML = ''; 
+        handPlayer1.style.display = 'none';
+        handPlayer2.style.display = 'none';
+        // handPlayer2.innerHTML = '<img class="hand" src="images/hand.svg" alt="">'; 
         player1Turn = true; 
+        roll_dice.style.opacity = '0.3';
+        hold.style.opacity = '0.3';
+        newGame.style.opacity = '1';
+        player1.style.opacity = '0.3';    
+        player2.style.opacity = '0.3';
       };
-
     };
   }); 
 }; 
@@ -268,6 +309,11 @@ let playAgain = () => {
     globalPlayer1.innerHTML = 0;
     globalPlayer2.innerHTML = 0;
     win.innerHTML = "";  
+    roll_dice.style.opacity = '1';
+    hold.style.opacity = '1';
+    newGame.style.opacity = '0.3';
+    handPlayer1.style.display = 'block';
+    handPlayer2.style.display = 'block';
   });
 };
 
