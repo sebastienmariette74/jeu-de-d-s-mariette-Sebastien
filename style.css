@@ -2,13 +2,13 @@
 html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select{margin:0}html{box-sizing:border-box}*,*::before,*::after{box-sizing:inherit}img,video{height:auto;max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0}
 
 * {
-  border: 1px solid;
+  /* border: 1px solid; */
 }
 
 body {
   text-transform: uppercase;
   font-family: 'Montserrat', sans-serif;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 body .display {
@@ -19,6 +19,10 @@ body .display {
   flex-direction: column; 
   font-size: 0.9em;
   height: 100vh;
+}
+
+.img_hold, .img_roll_dice, .img_new_game {
+  vertical-align: top;
 }
 
 .new_game {
@@ -39,14 +43,20 @@ body .display {
 
 #dice{
   width: 20%;
+  width: 55px;
+  line-height: 20vh;
 }
 
 .title_player {
   /* height: 30%; */
   width: 30vw;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
+#player1 {
+  margin-right: 5%;
+}
+
 .point {
   font-size: 100px;
   color: red;
@@ -75,12 +85,35 @@ body .display {
   /* width: 20%;
   min-width: 70px;
   margin: 0 auto; */
-  height: 20%;
+  /* height: 25%; */
   background-color: rgba(255, 0, 0, .6);
 }
 
 .current_score_player {
   color: white;
+  padding: 4px;
+}
+
+.global_score, .current_score_player {
+  font-size: 2em;
+  font-weight: 200;
+}
+
+.global_score {
+  color: red;
+  font-size: 4em;
+}
+
+.hold {
+  margin-top: 20px;
+  height: 10vh;
+  /* line-height: 10vh; */
+  align-self: center;
+}
+
+.title_current_score {
+  font-size: 0.7rem;
+  padding: 5px;
 }
 
 @media screen and (min-width : 768px){
@@ -155,9 +188,12 @@ body .display {
     font-size: 4rem;
   }
   
-  #dice {
+  .dice {
     width: 55px;
     margin-top: 55px ;
+    display: block;
+    height: 100%;
+    line-height: 100%;
   }
   
   

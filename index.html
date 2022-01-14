@@ -7,20 +7,20 @@
   <meta name="description" content="Ce site est un jeu de dé super amusant !!!">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;700&display=swap" rel="stylesheet">
   <title>Jeu de dé</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="display" class="display">
     <div id="new_game" class="new_game">
-      <img id="btn_new_game" src="images/icone_add.svg" alt="">
+      <img id="btn_new_game" class="img_new_game" src="images/icone_add.svg" alt="">
       <span>new game</span>
     </div>
     <div class="players">
       <div class="display_player">
-        <div id="player1" class="title_player">
-          <div>
+        <div class="title_player">
+          <div id="player1">
             player 1 
           </div>
           <span id="hand_player1" class="hand_player"></span> 
@@ -29,11 +29,11 @@
       </div>      
       <div id="dice" ></div>
       <div class="display_player">
-        <div id="player2" class="title_player">
-          <div>
+        <div class="title_player">
+          <span id="hand_player2" class="hand_player"></span> 
+          <div id="player2">
             player 2
           </div>
-          <span id="hand_player2" class="hand_player"></span> 
         </div>
         <div id="global_score_player2" class="global_score">0</div>
       </div>      
@@ -47,11 +47,11 @@
       </div>
       <div class="actions">
         <div id="btn_roll_dice" class="roll_dice">
-          <img  src="images/dice-6.svg" width="16" height="16" alt="">
+          <img class="img_roll_dice" src="images/dice-6.svg" width="16" height="16" alt="">
           <span>roll dice</span> 
         </div>
         <div id="hold" class="hold">
-          <img  src="images/icone_hold.svg" alt="">
+          <img class="img_hold" src="images/icone_hold.svg" alt="">
           <span id="btn_hold">hold</span> 
         </div>
         <div id="test"></div>
