@@ -136,6 +136,13 @@ body .display {
 }
 
 @media screen and (min-width : 768px){
+  .player {
+    font-size: 2em;
+  }
+}
+
+
+@media screen and (min-width : 992px){
   body .display {  
     height: 90vh;
     margin-top : 30px;
