@@ -1,9 +1,12 @@
 body {
   text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;  
   font-weight: 400;
 }
 
+* {
+  /* border : 1px solid; */
+}
 
 body .display {
   position: relative;
@@ -14,20 +17,25 @@ body .display {
   margin: 8px 18px 13px 13px;
 }
 
-  .display::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    margin: -8px -18px -13px -13px;
-    background: linear-gradient(#f0b289, #976340, #693919);    
+.display::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  margin: -8px -18px -13px -13px;
+  background: linear-gradient(#f0b289, #976340, #693919);    
 }
 
 .img_hold, .img_roll_dice, .img_new_game {
-  vertical-align: top;
+  vertical-align: middle;
+  margin-right: 3px;
+}
+
+.img_roll_dice {
+  margin-top: 3px;
 }
 
 .new_game {
@@ -62,11 +70,6 @@ body .display {
 
 #player2 {
   margin-left: 5%;
-}
-
-.point {
-  font-size: 100px;
-  color: red;
 }
 
 .hand{
@@ -144,9 +147,13 @@ body .display {
   }   
 
   body {
-    width: 60%;
+    width: 75%;
     display: flex;
     justify-content: center;
     margin: 0 auto;
+  }
+
+  .player {
+    font-size: 1.5em;
   }
 }
