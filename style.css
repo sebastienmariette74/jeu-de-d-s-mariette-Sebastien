@@ -1,10 +1,6 @@
 /* reset css */
 html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select{margin:0}html{box-sizing:border-box}*,*::before,*::after{box-sizing:inherit}img,video{height:auto;max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0}
 
-* {
-  /* border: 1px solid; */
-}
-
 body {
   text-transform: uppercase;
   font-family: 'Montserrat', sans-serif;
@@ -12,13 +8,24 @@ body {
 }
 
 body .display {
-  margin: 0 auto;
-  border-style: solid;
-  border-width: 8px 18px 13px 13px;
-  border-color: rgba(165, 42, 42, .7); 
-  flex-direction: column; 
+  position: relative;
+  flex-direction: column;
   font-size: 0.9em;
   height: 100vh;
+  background: #fff;
+  margin: 8px 18px 13px 13px;
+}
+
+  .display::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    margin: -8px -18px -13px -13px;
+    background: linear-gradient(#f0b289, #976340, #693919);    
 }
 
 .img_hold, .img_roll_dice, .img_new_game {
@@ -28,7 +35,6 @@ body .display {
 .new_game {
   text-align: center;
   height: 10vh;
-  /* line-height: 10vh; */
 }
 
 .display, .players, .global_score, .round_score {
@@ -38,7 +44,6 @@ body .display {
 
 .players {
   height: 20vh; 
-  /* display: flex; */
 }
 
 #dice{
@@ -48,7 +53,6 @@ body .display {
 }
 
 .title_player {
-  /* height: 30%; */
   width: 30vw;
   display: flex;
   justify-content: center;
@@ -75,22 +79,15 @@ body .display {
   height: 10vh;
   line-height: 1.6em;
   text-align: center;
-  /* font-size: 1.5em; */
   color: red;
-  /* align-self: center; */
 }
 
 .round_score {
   height: 20vh; 
-  /* display: flex; */
   text-align: center;
 }
 
 .current_score>div {
-  /* width: 20%;
-  min-width: 70px;
-  margin: 0 auto; */
-  /* height: 25%; */
   background-color: rgba(255, 0, 0, .6);
 }
 
@@ -112,7 +109,6 @@ body .display {
 .hold {
   margin-top: 20px;
   height: 10vh;
-  /* line-height: 10vh; */
   align-self: center;
 }
 
@@ -125,115 +121,25 @@ body .display {
   cursor: pointer;
 }
 
+#dice {
+  opacity: 1;
+  transition: opacity 0.5s;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  -ms-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
+}
+
 @media screen and (min-width : 768px){
-  body .display {
-    margin: 0 auto;
-    margin-top: 100px;
-    width: 70%;
-    border-style: solid;
-    border-width: 8px 18px 13px 13px;
-    border-color: rgba(165, 42, 42, .7);  
-  }
-  
-  .display, .players, .global_score, .round_score {
+  body .display {  
+    height: 90vh;
+    margin-top : 30px;
+  }   
+
+  body {
+    width: 60%;
     display: flex;
-    justify-content: space-evenly;
-  }
-  
-  .display {
-    flex-direction: column;
-    align-content: space-around;
-  }
-  
-  .new_game {
-    text-align: center;
-    height: 10vh;
-    line-height: 10vh;
-  }
-  
-  .players {
-    height: 20vh; 
-  }
-  
-  #winner, #begin {
-    height: 10vh;
-    text-align: center;
-    font-size: 1.5em;
-    color: red;
-    /* align-self: center; */
-  }
-  
-  .round_score {
-    height: 20vh; 
-  }
-  
-  .players>div:nth-child(odd), .round_score>div:nth-child(odd) {
-    width: 40%;
-    text-align: center;
-  }
-  
-  .players>div:nth-child(2), .round_score>div:nth-child(2) {
-    width: 20%;
-    text-align: center;
-  }
-  /* 
-  .new_game::before {
-    content: url(/images/icone_add.svg);
-  } */
-  
-  .title_player {
-    /* font-size: 1.2em; */
-    font-size: 2rem;
-  }
-  
-  .hand {
-    display: inline-block;
-    vertical-align: bottom;
-  }
-  
-  
-  .global_score {
-    color: red;
-    font-size: 4rem;
-  }
-  
-  .dice {
-    width: 55px;
-    margin-top: 55px ;
-    display: block;
-    height: 100%;
-    line-height: 100%;
-  }
-  
-  
-  .current_score>div {
-    width: 20%;
-    min-width: 70px;
+    justify-content: center;
     margin: 0 auto;
-    background-color: rgba(255, 0, 0, .6);
-  }
-  
-  .title_current_score {
-    font-size: 0.8rem;
-    line-height: 40px;
-  }
-  
-  .current_score_player {
-    color: white;
-    font-size: 1.5rem;
-    line-height: 40px;
-  }
-  
-  .roll_dice, .hold {
-    line-height: 30px;
-  }
-  
-  .roll_dice {
-    margin-bottom: 20px;
-  }
-  
-  #btn_new_game {
-    margin-bottom: 4px;
-    vertical-align: middle;
   }
 }
