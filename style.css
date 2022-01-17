@@ -34,7 +34,8 @@ body .display {
 
 .new_game {
   text-align: center;
-  height: 10vh;
+  display: flex;
+  margin: 0 auto;
 }
 
 .display, .players, .global_score, .round_score {
@@ -106,9 +107,13 @@ body .display {
   font-size: 4em;
 }
 
+.btn {
+  padding: 10px 0;
+  margin: -10px 0;
+}
+
 .hold {
   margin-top: 20px;
-  height: 10vh;
   align-self: center;
 }
 
