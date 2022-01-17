@@ -259,7 +259,7 @@ let addPoints = () => {
 
     if (win.innerHTML != "" || begin.innerHTML != ""){
       event.preventDefault;
-    } else if (parseInt(globalPlayer1.innerHTML) >= 10){   
+    } else if (parseInt(globalPlayer1.innerHTML) >= 100){   
       event.preventDefault();   
       partiesGagnéesP1 ++;
       if (partiesGagnéesP1 > partiesGagnéesP2) {
@@ -293,7 +293,7 @@ let addPoints = () => {
         player1.style.opacity = '0.3';    
         player2.style.opacity = '0.3';
       };
-    } else if (parseInt(globalPlayer2.innerHTML) >= 10){  
+    } else if (parseInt(globalPlayer2.innerHTML) >= 100){  
       event.preventDefault();       
       partiesGagnéesP2 ++;
       if (partiesGagnéesP1 > partiesGagnéesP2) {
