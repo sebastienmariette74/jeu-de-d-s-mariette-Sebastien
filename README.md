@@ -1,5 +1,5 @@
 # Projet Jeu de dés
-[Jeu de dés](https://ape-neydens.netlify.app/)
+[Jeu de dés](https://sebastienmariette74.github.io/jeu-de-des/)
 
 ## Technologies
 HTML, CSS, Bootstrap, Javascript
