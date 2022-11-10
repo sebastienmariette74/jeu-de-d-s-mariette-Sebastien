@@ -105,7 +105,7 @@ function nb (){
 };
 
 // Chaque joueur lance le dé. Celui qui a le score le plus grand commence
-let beginner = (event) => {
+let beginner = () => {
   if (winnerBegin){    
     event.preventDefault();
   } else if ( partie1 && globalPlayer1.innerHTML == 0){
